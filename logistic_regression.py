@@ -1,5 +1,5 @@
 """
-@title: KNN Classifier for Covid outcome prediction
+@title: Logistic Regression Classifier for Covid outcome prediction
 @author: Ahmed Bakr
 """
 
