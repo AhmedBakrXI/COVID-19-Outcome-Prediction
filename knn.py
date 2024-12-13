@@ -73,5 +73,5 @@ print("Test ROC/AUC Score:", roc_auc_score(y_test, y_test_proba))
 print("\033[34m--------------------------------------------------------------------------------\033[0m")
 
 # Plot the confusion matrix
-ConfusionMatrixDisplay.from_estimator(knn_classifier, x_test, y_test)
+ConfusionMatrixDisplay.from_estimator(knn_classifier, x_test, y_test, display_labels=['Class 0', 'Class 1']).plot(cmap="Blues")
 plt.show()

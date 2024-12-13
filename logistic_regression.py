@@ -55,18 +55,18 @@ grid_search.fit(x_train, y_train)
 logistic_regression_classifier = grid_search.best_estimator_
 
 # Predict and print reports
-y_val_pred = logistic_regression_classifier.predict(x_val)
-y_val_proba = logistic_regression_classifier.predict_proba(x_val)[:, 1]
+y_val_pred_LR = logistic_regression_classifier.predict(x_val)
+y_val_proba_LR = logistic_regression_classifier.predict_proba(x_val)[:, 1]
 
 print("Best Parameters:", grid_search.best_params_)
-print("\nValidation Classification Report:\n", classification_report(y_val, y_val_pred))
-print("Validation ROC/AUC Score:", roc_auc_score(y_val, y_val_proba))
+print("\nValidation Classification Report:\n", classification_report(y_val, y_val_pred_LR))
+print("Validation ROC/AUC Score:", roc_auc_score(y_val, y_val_proba_LR))
 print("\033[34m--------------------------------------------------------------------------------\033[0m")
 
 # Plot the ROC curve
-fpr, tpr, _ = roc_curve(y_val, y_val_proba)
+fpr, tpr, _ = roc_curve(y_val, y_val_proba_LR)
 plt.figure()
-plt.plot(fpr, tpr, label=f'Logistic_Regression (AUC = {roc_auc_score(y_val, y_val_proba):.2f})')
+plt.plot(fpr, tpr, label=f'Logistic_Regression (AUC = {roc_auc_score(y_val, y_val_proba_LR):.2f})')
 plt.plot([0, 1], [0, 1], 'k--', label='Random Chance')
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
@@ -74,11 +74,11 @@ plt.title('ROC Curve')
 plt.legend(loc='best')
 
 # Evaluate the model on the test set
-y_test_pred = logistic_regression_classifier.predict(x_test)
-y_test_proba = logistic_regression_classifier.predict_proba(x_test)[:, 1]
+y_test_pred_LR = logistic_regression_classifier.predict(x_test)
+y_test_proba_LR = logistic_regression_classifier.predict_proba(x_test)[:, 1]
 
-print("\nTest Classification Report:\n", classification_report(y_test, y_test_pred))
-print("Test ROC/AUC Score:", roc_auc_score(y_test, y_test_proba))
+print("\nTest Classification Report:\n", classification_report(y_test, y_test_pred_LR))
+print("Test ROC/AUC Score:", roc_auc_score(y_test, y_test_proba_LR))
 print("\033[34m--------------------------------------------------------------------------------\033[0m")
 
 # Plot the confusion matrix

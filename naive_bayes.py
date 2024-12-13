@@ -39,17 +39,17 @@ nb_classifier.fit(x_train, y_train)
 
 
 # Predict and print reports
-y_val_pred = nb_classifier.predict(x_val)
-y_val_proba = nb_classifier.predict_proba(x_val)[:, 1]
+y_val_pred_nb = nb_classifier.predict(x_val)
+y_val_proba_nb = nb_classifier.predict_proba(x_val)[:, 1]
 
-print("\nValidation Classification Report:\n", classification_report(y_val, y_val_pred))
-print("Validation ROC/AUC Score:", roc_auc_score(y_val, y_val_proba))
+print("\nValidation Classification Report:\n", classification_report(y_val, y_val_pred_nb))
+print("Validation ROC/AUC Score:", roc_auc_score(y_val, y_val_proba_nb))
 print("\033[34m--------------------------------------------------------------------------------\033[0m")
 
 # Plot the ROC curve
-fpr, tpr, _ = roc_curve(y_val, y_val_proba)
+fpr, tpr, _ = roc_curve(y_val, y_val_proba_nb)
 plt.figure()
-plt.plot(fpr, tpr, label=f'Naive_Bayes (AUC = {roc_auc_score(y_val, y_val_proba):.2f})')
+plt.plot(fpr, tpr, label=f'Naive_Bayes (AUC = {roc_auc_score(y_val, y_val_proba_nb):.2f})')
 plt.plot([0, 1], [0, 1], 'k--', label='Random Chance')
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
@@ -57,11 +57,11 @@ plt.title('ROC Curve')
 plt.legend(loc='best')
 
 # Evaluate the model on the test set
-y_test_pred = nb_classifier.predict(x_test)
-y_test_proba = nb_classifier.predict_proba(x_test)[:, 1]
+y_test_pred_nb = nb_classifier.predict(x_test)
+y_test_proba_nb = nb_classifier.predict_proba(x_test)[:, 1]
 
-print("\nTest Classification Report:\n", classification_report(y_test, y_test_pred))
-print("Test ROC/AUC Score:", roc_auc_score(y_test, y_test_proba))
+print("\nTest Classification Report:\n", classification_report(y_test, y_test_pred_nb))
+print("Test ROC/AUC Score:", roc_auc_score(y_test, y_test_proba_nb))
 print("\033[34m--------------------------------------------------------------------------------\033[0m")
 
 # Plot the confusion matrix
